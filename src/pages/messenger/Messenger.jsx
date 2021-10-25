@@ -13,6 +13,7 @@ import axios from 'axios'
 export default function Messanger(){
     const [conversations, setConversations] = useState([]);
     const {user} =  useContext (AuthContext);
+    console.log(user)
 
     useEffect(() => {
         const getConversations = async () => {

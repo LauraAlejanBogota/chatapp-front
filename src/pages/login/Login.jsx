@@ -2,12 +2,12 @@ import { useContext, useRef } from "react";
 import "./login.css";
 import { loginCall } from "../../apiCalls";
 import { AuthContext } from "../../context/AuthContext";
-import { CircularProgress } from "@material-ui/core";
+// import { CircularProgress } from "@material-ui/core";
 
 export default function Login() {
   const email = useRef();
   const password = useRef();
-  const { isFetching, dispatch } = useContext(AuthContext);
+  const {user , isFetching, error , dispatch } = useContext(AuthContext);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -16,7 +16,7 @@ export default function Login() {
       dispatch
     );
   };
-
+   console.log (user)
   return (
     <div className="login">
       <div className="loginWrapper">
@@ -43,7 +43,11 @@ export default function Login() {
               className="loginInput"
               ref={password}
             />
-            <button className="loginButton" type="submit" disabled={isFetching}>
+            <button className="loginButton">{isFetching ? "loading" : "Iniciar sesión" }</button>
+            <span className="loginForgot">Olvidaste tu contraseña?</span>
+            <button className="loginRegisterButton" type="submit">Crea tu cuenta</button>
+
+            {/* <button className="loginButton" type="submit" disabled={isFetching}>
               {isFetching ? (
                 <CircularProgress color="white" size="20px" />
               ) : (
@@ -57,7 +61,7 @@ export default function Login() {
               ) : (
                 "Crear cuenta"
               )}
-            </button>
+            </button> */}
           </form>
         </div>
       </div>
